@@ -11195,7 +11195,7 @@ p {
 
 .portfolio-card .portfolio-card-img {
   width: 100%;
-  
+  aspect-ratio: 3/3;
   
 }
 
