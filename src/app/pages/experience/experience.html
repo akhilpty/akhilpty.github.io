@@ -1,0 +1,36 @@
+<section class="experience section container">
+    <div class="section-header">
+        <h2 class="section-title">Professional Experience</h2>
+        <p class="section-subtitle">A journey through my software engineering career</p>
+    </div>
+
+    <div class="timeline">
+        @for (exp of experiences; track exp.period) {
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="exp-header">
+                    <div>
+                        <h3 class="role">{{ exp.title }}</h3>
+                        <p class="company">
+                            <i class="fa-solid fa-building"></i> {{ exp.company }} &middot; {{ exp.type }}
+                        </p>
+                    </div>
+                    <div class="exp-meta text-right">
+                        <div class="period-badge">
+                            <span class="period">{{ exp.period }}</span>
+                            <span class="duration">{{ exp.duration }}</span>
+                        </div>
+                        <p class="location"><i class="fa-solid fa-location-dot"></i> {{ exp.location }}</p>
+                    </div>
+                </div>
+                <ul class="responsibilities">
+                    @for (task of exp.responsibilities; track task) {
+                    <li>{{ task }}</li>
+                    }
+                </ul>
+            </div>
+        </div>
+        }
+    </div>
+</section>

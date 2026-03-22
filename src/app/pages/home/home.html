@@ -1,0 +1,33 @@
+<section class="hero box-container">
+    <div class="hero-content">
+        <div class="hero-description">
+            <p class="greeting">Hi, I'm</p>
+            <h1 class="name">AKHIL <span class="accent-text">A</span></h1>
+            <p class="role">SOFTWARE ENGINEER <span class="separator">/</span> FULL STACK DEVELOPER</p>
+            <p class="bio">I build high-performance, scalable web applications with a focus on modern user experiences
+                and cutting-edge technologies.</p>
+            <div class="hero-actions">
+                <a routerLink="/projects" class="btn btn-primary">VIEW PROJECTS</a>
+                <a href="mailto:akhilpattazhy1998@gmail.com" class="btn btn-secondary">GET IN TOUCH</a>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <div class="image-wrapper">
+                <div class="blob-bg"></div>
+                <img src="/my-img.jpeg" alt="Akhil's Profile" class="hero-image">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="tech-stack container">
+    <h2 class="section-title">MY TECH STACK</h2>
+    <div class="tech-list">
+        @for (tech of techStack; track tech.name) {
+        <div class="tech-item">
+            <i [class]="tech.icon" [style.color]="tech.color"></i>
+            <span>{{ tech.name }}</span>
+        </div>
+        }
+    </div>
+</section>
