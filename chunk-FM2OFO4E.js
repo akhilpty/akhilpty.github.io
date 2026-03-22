@@ -1,0 +1,1 @@
+import{La as t,Ma as a,Xa as o,ya as i}from"./chunk-CR6G6CFM.js";var s=class n{static \u0275fac=function(e){return new(e||n)};static \u0275cmp=i({type:n,selectors:[["app-about"]],decls:4,vars:0,template:function(e,l){e&1&&(t(0,"h2"),o(1,"About Me"),a(),t(2,"p"),o(3,"I build scalable Angular apps and real-time systems."),a())},encapsulation:2})};export{s as About};

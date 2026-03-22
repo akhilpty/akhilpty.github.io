@@ -1,1 +1,0 @@
-import{La as e,Ma as a,Va as n,ya as c}from"./chunk-ZH35QTSQ.js";var i=class o{static \u0275fac=function(t){return new(t||o)};static \u0275cmp=c({type:o,selectors:[["app-contact"]],decls:4,vars:0,template:function(t,p){t&1&&(e(0,"h2"),n(1,"Contact"),a(),e(2,"p"),n(3,"Email: akhilpattazhy1998@gmail.com"),a())},encapsulation:2})};export{i as Contact};
