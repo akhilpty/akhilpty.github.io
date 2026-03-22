@@ -20,7 +20,7 @@
     </div>
 </section>
 
-<section class="tech-stack container">
+<section #techSection class="tech-stack container" [class.in-view]="isTechVisible()">
     <h2 class="section-title">MY TECH STACK</h2>
     <div class="tech-list">
         @for (tech of techStack; track tech.name) {
