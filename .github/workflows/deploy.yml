@@ -29,10 +29,5 @@ jobs:
         run: npm run build # your ng build command
 
       # Step 5: Deploy to GitHub Pages
-      - name: Deploy to GH Pages
-        uses: angular-schule/[email protected]
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          base-href: /
-          build-dir: dist/portfolio/browser
-          branch: gh-pages
+     name: Deploy to GH Pages
+  run: npx angular-cli-ghpages --dir=dist/portfolio/browser --branch=gh-pages
