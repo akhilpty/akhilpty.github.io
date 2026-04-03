@@ -3,58 +3,36 @@ name: Angular CI/CD to GitHub Pages
 on:
   push:
     branches:
-      - main # Change if your default branch is master
+      - main # Updated to match your new default branch name
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: 'pages'
-  cancel-in-progress: false
+  contents: write
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    outputs:
-      dist-path: ${{ steps.build.outputs.dist-path }}
     steps:
-      # 1️⃣ Checkout code
+      # 1. Checkout code
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Setup Node.js
+      # 2. Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: '22'
           cache: 'npm'
 
-      # 3️⃣ Install dependencies
+      # 3. Install dependencies
       - name: Install Dependencies
         run: npm ci
 
-      # 4️⃣ Install Angular CLI
-      - name: Install Angular CLI
-        run: npm install -g @angular/cli
-
-      # 5️⃣ Build Angular App
+      # 4. Build Angular App
       - name: Build Angular
-        id: build
-        run: |
-          ng build --base-href /
-          echo "dist-path=dist/portfolio/browser" >> $GITHUB_OUTPUT
+        run: npm run build -- --base-href /
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      # 1️⃣ Deploy to GitHub Pages
+      # 5. Deploy to GitHub Pages
       - name: Deploy to GH Pages
-        run: npx angular-cli-ghpages --dir=${{ needs.build.outputs.dist-path }} --branch=gh-pages
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx angular-cli-ghpages --dir=dist/portfolio/browser --branch=gh-pages --no-silent
