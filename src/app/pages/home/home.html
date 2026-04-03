@@ -3,7 +3,11 @@
         <div class="hero-description">
             <p class="greeting">Hi, I'm</p>
             <h1 class="name">AKHIL <span class="accent-text">A</span></h1>
-            <p class="role">SOFTWARE ENGINEER <span class="separator">/</span> FULL STACK DEVELOPER</p>
+            <p class="role">
+                <span #roleText class="role-text">FRONT END DEVELOPER</span>
+                <span class="separator">/</span>
+                <span #roleText class="role-text">ANGULAR DEVELOPER</span>
+            </p>
             <p class="bio">I build high-performance, scalable web applications with a focus on modern user experiences
                 and cutting-edge technologies.</p>
             <div class="hero-actions">
@@ -21,10 +25,10 @@
 </section>
 
 <section #techSection class="tech-stack container" [class.in-view]="isTechVisible()">
-    <h2 class="section-title">MY TECH STACK</h2>
+    <h2 #techTitle class="section-title">MY TECH STACK</h2>
     <div class="tech-list">
         @for (tech of techStack; track tech.name) {
-        <div class="tech-item">
+        <div #techItem class="tech-item">
             <i [class]="tech.icon" [style.color]="tech.color"></i>
             <span>{{ tech.name }}</span>
         </div>

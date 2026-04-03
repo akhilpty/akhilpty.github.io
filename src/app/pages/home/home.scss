@@ -1,11 +1,14 @@
+@use '../../../styles/theme' as *;
+
 .hero {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: calc(100vh - 80px); /* Fill screen minus header */
   padding: 2rem;
-  background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.15), transparent 40%),
-              radial-gradient(circle at bottom left, rgba(147, 51, 234, 0.15), transparent 40%);
+  background:
+    radial-gradient(circle at top right, rgba(99, 102, 241, 0.15), transparent 40%),
+    radial-gradient(circle at bottom left, rgba(147, 51, 234, 0.15), transparent 40%);
 }
 
 .hero-content {
@@ -38,16 +41,13 @@
 }
 
 .accent-text {
-  background: linear-gradient(to right, #6366f1, #9333ea);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  @include gradient-text;
 }
 
 .role {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #a0a0a0;
+  color: var(--text-muted);
   letter-spacing: 3px;
   margin-bottom: 1.5rem;
 }
@@ -59,7 +59,7 @@
 
 .bio {
   font-size: 1.2rem;
-  color: #ccc;
+  color: var(--text-main);
   max-width: 500px;
   margin-bottom: 2.5rem;
 }
@@ -87,6 +87,7 @@
   background: var(--secondary);
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+  cursor: pointer;
 }
 
 .btn-secondary {
@@ -128,8 +129,12 @@
 }
 
 @keyframes blob-anim {
-  0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-  100% { border-radius: 50% 50% 20% 80% / 25% 80% 20% 75%; }
+  0% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+  100% {
+    border-radius: 50% 50% 20% 80% / 25% 80% 20% 75%;
+  }
 }
 
 .hero-image {
@@ -164,10 +169,6 @@
   opacity: 0;
 }
 
-.in-view .section-title {
-  animation: fadeInUp 0.8s ease forwards;
-}
-
 .section-title::after {
   content: '';
   display: block;
@@ -194,20 +195,9 @@
   border-radius: 12px;
   font-weight: 600;
   font-size: 1rem;
-  color: #aaa;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  color: var(--text-muted);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   opacity: 0;
-}
-
-.in-view .tech-item {
-  animation: fadeInUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-}
-
-// Staggered delays for tech items
-@for $i from 1 through 15 {
-  .in-view .tech-item:nth-child(#{$i}) {
-    animation-delay: #{$i * 0.1s + 0.3s}; // delay after title
-  }
 }
 
 @keyframes fadeInUp {
@@ -227,7 +217,7 @@
 }
 
 .tech-item:hover {
-  color: white;
+  color: var(--text-main);
   background: rgba(255, 255, 255, 0.1);
   border-color: var(--primary);
   transform: translateY(-5px) scale(1.05);
