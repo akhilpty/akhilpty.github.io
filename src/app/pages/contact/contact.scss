@@ -1,0 +1,233 @@
+@use 'theme' as *;
+
+.contact-section {
+    padding: 8rem 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.section-title {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+    letter-spacing: -2px;
+}
+
+.section-title .accent {
+    @include gradient-text;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+}
+
+.contact-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2.5rem;
+    @include glassmorphism;
+    border-radius: 24px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: default;
+}
+
+.email-card {
+    cursor: pointer;
+}
+
+.contact-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+.icon-box {
+    width: 70px;
+    height: 70px;
+    @include flex-center;
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary);
+    border-radius: 20px;
+    font-size: 2rem;
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover .icon-box {
+    background: var(--primary);
+    color: white;
+    transform: rotate(10deg);
+}
+
+.card-content h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.card-content p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.copy-hint {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.contact-card:hover .copy-hint {
+    opacity: 1;
+}
+
+.copy-hint.copied {
+    color: #10b981;
+    opacity: 1;
+}
+
+/* Featured Social Tiles */
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.social-tile {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.2rem 2.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    color: var(--text-muted);
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.social-tile i {
+    font-size: 1.5rem;
+}
+
+.social-tile.linkedin:hover {
+    background: #0a66c2;
+    color: white;
+    border-color: #0a66c2;
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(10, 102, 194, 0.4);
+}
+
+.social-tile.github:hover {
+    background: #24292e;
+    color: white;
+    border-color: #24292e;
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(36, 41, 46, 0.4);
+}
+
+.social-tile.whatsapp:hover {
+    background: #25d366;
+    color: white;
+    border-color: #25d366;
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+}
+
+/* Contact Footer */
+.contact-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.resume-cta p {
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+}
+
+.btn-resume {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-main);
+    border-radius: 12px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.btn-resume:hover {
+    background: var(--bg-card);
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: scale(1.05);
+}
+
+.response-note {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.response-note i {
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2.8rem;
+    }
+    .social-tile {
+        width: 100%;
+        justify-content: center;
+    }
+}

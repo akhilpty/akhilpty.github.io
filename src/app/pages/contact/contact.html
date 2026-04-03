@@ -1,2 +1,63 @@
-<h2>Contact</h2>
-<p>Email: akhilpattazhy1998@gmail.com</p>
+<section class="contact-section container">
+    <div class="section-header">
+        <h2 class="section-title">Let's stay <span class="accent">connected</span></h2>
+        <p class="section-subtitle">
+            I'm always happy to connect, share knowledge, or just have a chat with fellow developers and technology
+            enthusiasts.
+        </p>
+    </div>
+
+    <div class="contact-container">
+        <!-- Main Contact Tiles -->
+        <div class="contact-grid">
+            <div class="contact-card email-card" (click)="copyEmail()">
+                <div class="icon-box">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Email Me</h3>
+                    <p>akhilpattazhy1998@gmail.com</p>
+                </div>
+                <div class="copy-hint" [class.copied]="emailCopied">
+                    {{ emailCopied ? 'Copied!' : 'Click to copy' }}
+                </div>
+            </div>
+
+            <div class="contact-card location-card">
+                <div class="icon-box">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Location</h3>
+                    <p>Kollam, Kerala, India</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Presence -->
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/akhillinkin/" target="_blank" class="social-tile linkedin">
+                <i class="fa-brands fa-linkedin-in"></i>
+                <span>LinkedIn</span>
+            </a>
+            <a href="https://github.com/akhilpty" target="_blank" class="social-tile github">
+                <i class="fa-brands fa-github"></i>
+                <span>GitHub</span>
+            </a>
+            <a href="https://wa.me/9048450609" target="_blank" class="social-tile whatsapp">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
+        </div>
+
+        <div class="contact-footer">
+            <div class="resume-cta">
+                <p>Looking for a detailed overview of my skills?</p>
+                <a href="/Akhil_A_Angular_Developer_Resume.pdf" download class="btn-resume">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    DOWNLOAD MY RÉSUMÉ
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

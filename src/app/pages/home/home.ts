@@ -1,10 +1,11 @@
 import { Component, AfterViewInit, ElementRef, ViewChild, ViewChildren, QueryList, signal, NgZone } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { animate, stagger } from 'animejs';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
