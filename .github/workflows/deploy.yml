@@ -1,24 +1,25 @@
 name: Deploy Angular App to GitHub Pages
 
+# Trigger workflow on push to master
 on:
   push:
     branches:
-      - master # run on push to master
+      - master
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout your repo
+      # Step 1: Checkout code
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Step 2: Setup Node
+      # Step 2: Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20' # or your project node version
+          node-version: '24' # updated to Node 24
 
       # Step 3: Install dependencies
       - name: Install Dependencies
@@ -26,8 +27,8 @@ jobs:
 
       # Step 4: Build Angular App
       - name: Build Angular
-        run: npm run build # your ng build command
+        run: ng build --base-href /
 
       # Step 5: Deploy to GitHub Pages
-     name: Deploy to GH Pages
-  run: npx angular-cli-ghpages --dir=dist/portfolio/browser --branch=gh-pages
+      - name: Deploy to GH Pages
+        run: npx angular-cli-ghpages --dir=dist/portfolio/browser --branch=gh-pages
