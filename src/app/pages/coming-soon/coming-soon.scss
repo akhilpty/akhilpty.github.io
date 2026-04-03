@@ -1,0 +1,145 @@
+@use 'theme' as *;
+
+.coming-soon {
+    min-height: calc(100vh - 160px);
+    @include flex-center;
+    flex-direction: column;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.content {
+    @include glassmorphism;
+    padding: 6rem 4rem;
+    border-radius: 40px;
+    max-width: 700px;
+    width: 100%;
+    z-index: 10;
+    position: relative;
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.title {
+    font-size: 5rem;
+    font-weight: 900;
+    margin-bottom: 2rem;
+    letter-spacing: -4px;
+    line-height: 1;
+    color: var(--text-main);
+}
+
+.title .accent {
+    @include gradient-text;
+    background-size: 200%;
+    animation: gradientMove 4s infinite linear;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.description {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 4rem;
+    max-width: 500px;
+    margin-inline: auto;
+    font-weight: 500;
+}
+
+/* Actions */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.2rem 3.5rem;
+    background: var(--primary);
+    color: white;
+    border-radius: 100px;
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    @include flex-center;
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
+}
+
+.btn-back:hover {
+    background: var(--secondary);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4);
+}
+
+.btn-back i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-back:hover i {
+    transform: translateX(-5px);
+}
+
+/* Floating Blobs */
+.floating-blobs .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.3;
+    z-index: 1;
+    animation: blobFloat 25s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+    width: 600px;
+    height: 600px;
+    background: var(--primary);
+    top: -200px;
+    right: -100px;
+}
+
+.blob-2 {
+    width: 500px;
+    height: 500px;
+    background: var(--secondary);
+    bottom: -150px;
+    left: -100px;
+    animation-delay: -7s !important;
+}
+
+.blob-3 {
+    width: 400px;
+    height: 400px;
+    background: var(--accent);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.15 !important;
+}
+
+@keyframes blobFloat {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    100% { transform: translate(120px, 80px) scale(1.15) rotate(15deg); }
+}
+
+@media (max-width: 768px) {
+    .content {
+        padding: 5rem 2rem;
+        margin: 1rem;
+    }
+    .title {
+        font-size: 3.5rem;
+    }
+    .description {
+        font-size: 1.15rem;
+    }
+    .btn-back {
+        width: 100%;
+        padding-inline: 1rem;
+    }
+}

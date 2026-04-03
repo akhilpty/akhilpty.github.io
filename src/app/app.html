@@ -1,3 +1,4 @@
+<div #loadingBar class="loading-bar"></div>
 <header class="header">
   <div class="container nav-content">
     <a routerLink="/home" class="logo">
@@ -14,7 +15,7 @@
 </header>
 
 <main>
-  <router-outlet></router-outlet>
+  <router-outlet (activate)="onRouteActivate()"></router-outlet>
 </main>
 
 <footer class="footer">
