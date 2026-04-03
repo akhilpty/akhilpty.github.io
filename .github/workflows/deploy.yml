@@ -3,7 +3,8 @@ name: Angular CI/CD to GitHub Pages
 on:
   push:
     branches:
-      - main # Updated to match your new default branch name
+      - main
+      - master # Triggers on either branch to be safe
 
 permissions:
   contents: write
@@ -27,11 +28,6 @@ jobs:
       - name: Build Angular App
         run: npm run build -- --base-href /
 
-      - name: List Build Directory (View Path)
-        run: |
-          echo "Listing the build output directory structure:"
-          ls -R dist/portfolio/browser
-
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -51,7 +47,21 @@ jobs:
           name: portfolio-build
           path: dist/portfolio/browser
 
+      - name: Configure Git
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Confirm Files Before Deploy
+        run: |
+          echo "Current working directory: $(pwd)"
+          echo "Current Git branch: $(git rev-parse --abbrev-ref HEAD)"
+          echo "Confirming built files exist in dist/portfolio/browser:"
+          ls -la dist/portfolio/browser
+
       - name: Deploy to GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx angular-cli-ghpages --dir=dist/portfolio/browser --branch=gh-pages --no-silent
+        run: npx angular-cli-ghpages --dir=dist/portfolio/browser --branch=gh-pages --no-silent --message "Deploying from GitHub Actions - $(date)"
+
+
