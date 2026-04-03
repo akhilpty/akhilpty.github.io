@@ -3,7 +3,7 @@ name: Angular CI/CD to GitHub Pages
 on:
   push:
     branches:
-      - main # your default branch
+      - main # Change if your default branch is master
 
 permissions:
   contents: read
@@ -20,21 +20,26 @@ jobs:
     outputs:
       dist-path: ${{ steps.build.outputs.dist-path }}
     steps:
+      # 1️⃣ Checkout code
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # 2️⃣ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '24'
           cache: 'npm'
 
+      # 3️⃣ Install dependencies
       - name: Install Dependencies
         run: npm ci
 
+      # 4️⃣ Install Angular CLI
       - name: Install Angular CLI
         run: npm install -g @angular/cli
 
+      # 5️⃣ Build Angular App
       - name: Build Angular
         id: build
         run: |
@@ -48,6 +53,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # 1️⃣ Deploy to GitHub Pages
       - name: Deploy to GH Pages
         run: npx angular-cli-ghpages --dir=${{ needs.build.outputs.dist-path }} --branch=gh-pages
         env:
