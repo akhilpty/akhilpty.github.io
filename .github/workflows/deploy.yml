@@ -1,11 +1,10 @@
-name: Deploy Angular App to GitHub Pages
+name: Angular CI/CD to GitHub Pages
 
 on:
   push:
     branches:
-      - main # Your default branch
+      - main # your default branch
 
-# Permissions needed for deployment
 permissions:
   contents: read
   pages: write
@@ -16,34 +15,40 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
+    outputs:
+      dist-path: ${{ steps.build.outputs.dist-path }}
     steps:
-      # 1️⃣ Checkout code
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24' # Update to 24
+          node-version: '24'
           cache: 'npm'
 
-      # 3️⃣ Install dependencies
       - name: Install Dependencies
         run: npm ci
 
-      # 4️⃣ Install Angular CLI globally
       - name: Install Angular CLI
         run: npm install -g @angular/cli
 
-      # 5️⃣ Build Angular App
       - name: Build Angular
-        run: ng build --base-href /
+        id: build
+        run: |
+          ng build --base-href /
+          echo "dist-path=dist/portfolio/browser" >> $GITHUB_OUTPUT
 
-      # 6️⃣ Deploy using angular-cli-ghpages
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Deploy to GH Pages
-        run: npx angular-cli-ghpages --dir=dist/portfolio/browser --branch=gh-pages
+        run: npx angular-cli-ghpages --dir=${{ needs.build.outputs.dist-path }} --branch=gh-pages
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN_PAT }}
